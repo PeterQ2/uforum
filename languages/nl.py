@@ -356,7 +356,7 @@
 'Replys': 'Reacties',
 'Request reset password': 'Vraag een wachtwoord reset aan',
 'Reset Password key': 'Reset Wachtwoord sleutel',
-'Residence': 'Residence',
+'Residence': 'Woonplaats',
 'Resolve Conflict file': 'Los Conflictbestand op',
 'restore': 'herstel',
 'revert': 'herstel',
