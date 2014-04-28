@@ -7,4 +7,5 @@ def profile():
 
 def memberlist():
     users = db(db.auth_user).select()
-    return dict(user=users)
+    count = db(db.auth_user).count()
+    return dict(user=users, count=count)
