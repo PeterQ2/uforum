@@ -28,3 +28,6 @@ db.define_table(
     Field('reply_text', 'text', requires=IS_NOT_EMPTY()),
     auth.signature
 )
+
+if db(db.auth_group.role == 'admin').count() == 0:
+    db.auth_group.insert(role='admin',description='Admin group')
