@@ -9,6 +9,8 @@ settings.meta_author = 'Stefan van den Eertwegh <stefan.eertwegh@gmail.com>'
 settings.meta_keywords = 'web2py, python, framework'
 settings.meta_generator = 'Web2py Web Framework'
 
+settings.footer = 'Powered by <strong>Uforum</strong> | All rights reserved | Made by ' + '<a href="http://www.corebyte.nl"><strong>Corebyte Internet Services</strong></a>'
+
 ## your http://google.com/analytics id
 settings.google_analytics_id = None
 
