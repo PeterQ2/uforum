@@ -1,0 +1,18 @@
+{{extend 'layout.html'}}
+
+<div class="breadcrumb"><a href="{{=URL('default','index')}}" class="bold">Index</a> &raquo; <a href="{{=URL('default','category',args=forum.id)}}" class="bold">{{=forum.name}}</a> &raquo; {{=topic.title}}
+{{if auth.has_membership('admin'):}}
+    <div style="float: right">
+        {{if topic.slotje == 'Off':}}
+        <a href="{{=URL('topic','close_topic',args=topic.id)}}">[Sluiten]</a>
+        {{else:}}
+        <a href="{{=URL('topic','open_topic',args=topic.id)}}">[Openen]</a>
+        {{pass}}
+        <a href="{{=URL('topic','edit_topic',args=topic.id)}}">[Wijzig]</a>
+        <a href="{{=URL('topic','remove_topic',args=topic.id)}}">[Verwijder]</a>
+    </div>
+{{pass}}
+</div>
+<div style="padding: 10px">
+{{=form}}
+</div>

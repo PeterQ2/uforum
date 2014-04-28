@@ -1,0 +1,41 @@
+{{extend 'layout.html'}}
+
+    <h3 class="forum" style="margin-bottom: 0;">{{=title}}</h3>
+       <img src="{{=URL('static','icons',args='folder.png')}}" valign="bottom" /> <a href="{{=URL('default','index')}}">Index</a>{{if auth.is_logged_in():}} | <img src="{{=URL('static','icons',args='page_add.png')}}" /> <a href="{{=URL('topic','new',args=request.args(0))}}">Nieuw topic</a>{{pass}}
+    <br /><br />
+    <table width="100%" class="table-block">
+        {{if count>0:}}
+        <tr>
+            <th></th>
+            <th>Topic titel</th>
+            <th>Geplaatst op</th>
+            <th>Geplaatst door</th>
+            <th>Reacties</th>
+            <th>Views</th>
+        </tr>
+        {{pass}}
+        {{if count>0:}}
+        {{for row in topic:}}
+    	<tr>
+            <td><img title="{{if row.slotje == 'Off':}}Topic{{else:}}Gesloten topic{{pass}}"
+                     src="{{if row.slotje == 'Off':}}{{=URL('static','icons',args='page.png')}}{{else:}}{{=URL('static','icons',args='page_key.png')}}{{pass}}" /></td>
+        	<td width="250"><strong><a href="{{=URL('topic','read',args=row.id)}}">{{=row.title}}</a></strong></td>
+            <td>{{=row.created_on}}</td>
+            <td><a href="{{=URL('user','profile',args=row.created_by)}}">{{=row.created_by.first_name}} {{=row.created_by.last_name}}</a></td>
+        	<td width="100">{{=db(db.topic_reply.topic_title==row.id).count()}} reacties</td>
+            <td width="100">{{=row.views}}x bekeken</td>
+        </tr>
+        {{pass}}
+        {{else:}}
+        <tr>
+            <td>Er zijn geen topic gevonden in dit forum.</td>
+        </tr>
+        {{pass}}
+    </table>
+    {{if count>=settings.category_topic_per_page:}}
+    <table class="table-block">
+        <tr>
+            <td>{{=pagination}}</td>
+        </tr>
+    </table>
+    {{pass}}

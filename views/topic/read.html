@@ -1,0 +1,64 @@
+{{extend 'layout.html'}}
+
+<div class="breadcrumb"><a href="{{=URL('default','index')}}" class="bold">Index</a> &raquo; <a href="{{=URL('default','category',args=forum.id)}}" class="bold">{{=forum.name}}</a> &raquo; {{=topic.title}}
+{{if auth.has_membership('admin'):}}
+    <div style="float: right">
+        {{if topic.slotje == 'Off':}}
+        <a href="{{=URL('topic','close_topic',args=topic.id)}}">[Sluiten]</a>
+        {{else:}}
+        <a href="{{=URL('topic','open_topic',args=topic.id)}}">[Openen]</a>
+        {{pass}}
+        <a href="{{=URL('topic','edit_topic',args=topic.id)}}">[Wijzig]</a>
+        <a href="{{=URL('topic','remove_topic',args=topic.id)}}">[Verwijder]</a>
+    </div>
+{{pass}}
+</div>
+<table width="100%">
+<tr>
+    <td class="white" width="120"><a href="{{=URL('user','profile',args=topic.created_by)}}">{{=topic.created_by.first_name}} {{=topic.created_by.last_name}}</a></td>
+    <td class="white" width="590">Geplaatst op: {{=topic.created_on}}</td>
+    <td class="white">Aantal keer bekeken: {{=topic.views}}</td>
+</tr>
+<tr>
+    <td class="white" valign="top">
+    <img src="{{=URL('default','download',args=user.avatar)}}" width="120" height="120" />
+    <strong>Forum posts:</strong> {{=user.forum_posts}}<br/>
+    <strong>Woonplaats:</strong> {{=user.city}}</td>
+    <td class="white" valign="top" colspan="2">{{=XML(topic.topic_text, sanitize=True)}}</td>
+</tr>
+</table>
+
+<h2>Topic reacties</h2>
+{{if count_replys>settings.topic_reply_per_page:}}
+<div class="pagination">{{=pagination}}</div>
+{{pass}}
+{{if count_replys>0:}}
+    {{for reply in reply:}}
+    {{user = db(db.auth_user.id == reply.created_by).select().first()}}
+<table width="100%">
+<tr>
+    <td class="white" width="120"><a href="{{=URL('user','profile',args=reply.created_by)}}">{{=reply.created_by.first_name}} {{=reply.created_by.last_name}}</a></td>
+    <td class="white">Geplaatst op: {{=reply.created_on}}
+    {{if auth.has_membership('admin'):}}
+        <div style="float: right"><a href="{{=URL('topic','remove_reply',args=reply.id)}}">[Verwijder]</a></div>
+    {{pass}}
+        </td>
+</tr>
+<tr>
+    <td class="white" valign="top">
+    <img src="{{=URL('default','download',args=user.avatar)}}" width="120" height="120" />
+    <strong>Forum posts:</strong> {{=user.forum_posts}}<br/>
+    <strong>Woonplaats:</strong> {{=user.city}}</td>
+    <td class="white" valign="top">{{=XML(reply.reply_text, sanitize=True)}}</td>
+</tr>
+</table>
+    {{pass}}
+{{else:}}
+Er zijn geen reacties op dit topic
+{{pass}}
+{{if auth.is_logged_in():}}
+{{if topic.slotje == 'Off':}}
+<h2>Topic reactie plaatsen</h2>
+{{=form}}
+{{pass}}
+{{pass}}

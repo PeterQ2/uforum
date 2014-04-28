@@ -1,0 +1,24 @@
+table tr td, table tr th {
+    border: 1px #999 solid;
+    background: #ffffff;
+    padding: 4px;
+}
+table tr th, table tr th a {
+    font-weight: bold;
+}
+span.button, a.btn-default {
+    margin-left: 10px;
+}
+div.web2py_grid {
+    padding-bottom: 10px;
+}
+div.web2py_breadcrumbs {
+    margin-top: -10px;
+}
+div.web2py_breadcrumbs ul {
+    list-style: none;
+    padding-left: 0;
+}
+div.web2py_breadcrumbs ul li a:before {
+    content: "> "
+}

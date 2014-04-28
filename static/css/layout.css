@@ -1,0 +1,126 @@
+body {
+	font-family: Verdana;
+	font-size: 8.5pt;
+	color: #333;
+	background: url('../images/pixel_weave.png');
+	margin-top: 20px;
+}
+a {
+	color: #8C3420;
+	font-weight: normal;
+    text-decoration: none;
+}
+div#container {
+	width: 900px;
+	margin: 0 auto;
+}
+h1 {
+	font-size: 20pt;
+	font-family: "Myriad Pro";
+	color: #306;
+	text-align: center;
+}
+div#nav-bar {
+	height: 22px;
+	border: 1px dashed #999;
+	background: #fff;
+	margin-bottom: 20px;
+	padding-top: 8px;
+}
+div#nav-bar ul.nav {
+	list-style: none;
+	margin: 0;
+	width: 560px;
+	float: left;
+}
+div#nav-bar ul.nav li {
+	float: left;
+	padding: 0 10px;
+}
+div#nav-bar ul.nav li a{
+	color: #630;
+	text-decoration: none;
+    font-weight: bold;
+}
+div#nav-bar ul.nav li a:hover {
+	text-decoration: underline;
+}
+div#profile-bar {
+	width: 280px;
+	float: left;
+	text-align: right;
+	padding-right: 10px;
+}
+div#profile-bar ul.nav {
+	list-style: none;
+	margin: 0;
+	width: 388px;
+	float: right;
+}
+div#profile-bar ul.nav li {
+	float: right;
+	padding: 0 10px;
+}
+div#profile-bar ul.nav li a{
+	color: #630;
+	text-decoration: none;
+}
+div#profile-bar ul.nav li a:hover {
+	text-decoration: underline;
+}
+div#footer {
+	height: 22px;
+	border: 1px dashed #999;
+	background: #ffffff;
+	margin-bottom: 20px;
+	padding-top: 8px;
+}
+table.table-block {
+	border: 1px dashed #999;
+	background: #ffffff;
+	color: #333333;
+}
+table.table-block a {
+    text-decoration: underline;
+}
+div#footer {
+	margin-top: 20px;
+	text-align: center;
+}
+tr:hover {
+	backround: #efefef;
+	color: #333;
+}
+td.white {
+    background: #ffffff;
+    padding: 5px;
+}
+th {
+    font-weight: bold;
+    text-align: left;
+    border-bottom: 1px #999 dashed;
+}
+.stats span, .stats a {
+    font-weight: bold;
+}
+div.breadcrumb {
+    padding: 5px;
+    background: #ffffff;
+    font-family: Verdana;
+    font-size: 10px;
+    margin: 0px 2px;
+}
+div.breadcrumb a.bold {
+    font-weight: bold;
+}
+div.pagination {
+    padding: 5px;
+    background: #ffffff;
+}
+div.pagination ul {
+    list-style: none;
+}
+div.pagination ul li {
+    float: left;
+    margin-left: 2px;
+}

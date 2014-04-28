@@ -1,0 +1,16 @@
+{{extend 'layout.html'}}
+<h2>{{=T('Memberlist')}}</h2>
+<table width="100%" class="table-block">
+<tr>
+    <th></th>
+    <th>Gebruiker</th>
+    <th>Aantal topics</th>
+</tr>
+{{for row in user:}}
+<tr>
+    <td width="20"><img src="{{=URL('static','icons',args='user_suit.png')}}" /></td>
+    <td width="250"><strong><a href="{{=URL('user','profile',args=row.id)}}">{{=row.first_name}} {{=row.last_name}}</a></strong></td>
+    <td width="700">{{=row.forum_posts}} topics</td>
+</tr>
+{{pass}}
+</table>

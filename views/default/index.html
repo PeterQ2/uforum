@@ -1,0 +1,28 @@
+{{extend 'layout.html'}}
+
+{{for row in category:}}
+    <table width="100%" class="table-block" style="border-bottom: 0;">
+        <tr>
+            <td colspan="3" style="font-weight: bold">{{=row.name}}</td>
+        </tr>
+        </table>
+        <table width="100%" class="table-block" style="border-top: 0;">
+        {{for row in db(db.forum.category_name==row.id).select():}}
+    	<tr>
+            <td style="width: 16px;vertical-align: top; text-align: center"><img src="{{=URL('static','icons',args='folder.png')}}" /></td>
+        	<td width="400"><strong><a href="{{=URL('default','category',args=row.id)}}">{{=row.name}}</a></strong><br />{{=row.description}}</td>
+        	<td width="200">{{=db(db.topic.forum_name==row.id).count()}} topics</td>
+        </tr>
+        {{pass}}
+    </table>
+    <br/>
+{{pass}}
+<table class="table-block" width="100%">
+    <tr>
+        <td colspan="2"><strong>Statistieken</strong></td>
+    </tr>
+    <tr>
+        <td width="20"><img src="{{=URL('static','icons',args='chart_bar.png')}}" /></td>
+        <td class="stats">{{=XML(stats)}}</td>
+    </tr>
+</table>
