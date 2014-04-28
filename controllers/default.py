@@ -16,9 +16,9 @@ def index():
     cr = db(db.topic_reply).count()
     cl = db(db.auth_user).count()
     user = db(db.auth_user.id == cl).select().first()
-    stats = "Aantal topics: <span>%s</span>  Aantal reacties: <span>%s</span> Aantal gebruikers: <span>%s</span>" % (ct, cr, cl)
+    stats = T('Amount topics') + ": <span>%s</span> " % (ct) + T('Amount topic replys') + ": <span>%s</span> "  % (cr) + T('Amount members') + ": <span>%s</span> " % (cl)
     if cl > 0:
-        stats += "Nieuwste lid: <a href='" + URL('user', 'profile', args=cl) + "'>%s</a>" % (user.username)
+        stats += T('Newest member') + ": <a href='" + URL('user', 'profile', args=cl) + "'>%s</a>" % (user.username)
 
     return dict(category=category, stats=stats, user=user)
 

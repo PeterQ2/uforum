@@ -17,9 +17,9 @@ db.define_table(
     Field('forum_name', requires=IS_IN_DB(db,db.forum.id,'%(name)s')),
     Field('title', 'string', requires=IS_NOT_EMPTY()),
     Field('topic_text', 'text', requires=IS_NOT_EMPTY(), widget=ckeditor.widget),
-    Field('views', 'integer', default='0'),
+    Field('views', 'integer', default='0', readable=False, writable=False),
     Field('slotje', default='Off', requires=IS_IN_SET(['On', 'Off'])),
-    Field('last_updated', 'datetime',default=request.now),
+    Field('last_updated', 'datetime',default=request.now, readable=False, writable=False),
     auth.signature
 )
 db.define_table(

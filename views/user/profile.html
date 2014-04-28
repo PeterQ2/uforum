@@ -1,38 +1,39 @@
 {{extend 'layout.html'}}
 
-<h2>Profiel: {{=user.first_name}} {{=user.last_name}}</h2>
+<h2>{{=user.first_name}} {{=user.last_name}}</h2>
 <div style="background: #ffffff; padding: 5px">
 <table>
     <tr>
         <td><img src="{{=URL('default','download',args=user.avatar)}}" width="120" height="120" /></td>
-        <td>E-mail adres: {{=user.email}}<br />Forum posts: {{=user.forum_posts}}<br/>Woonplaats: {{=user.city}}<br/><br/><a href="{{=URL('message','new_message',args=user.id)}}">Stuur een priv&eacute; bericht</a></td>
+        <td>{{=T('E-mail address')}}: {{=user.email}}<br />{{=T('Forum posts')}}: {{=user.forum_posts}}<br/>{{=T('Residence')}}: {{=user.residence}}</td>
     </tr>
 </table>
 </div>
-<h3>Laatste topics van {{=user.first_name}}</h3>
+<h3>{{=T('Latest topics from')}} {{=user.first_name}}</h3>
 <table width="100%" class="table-block">
-<tr>
-    <th></th>
-    <th>Topic titel</th>
-    <th>Geplaatst op</th>
-    <th>Geplaatst door</th>
-    <th>Reacties</th>
-    <th>Views</th>
-</tr>
-{{if count>0:}}
-{{for row in topic:}}
-<tr>
-    <td><img src="{{=URL('static','icons',args='page_white_text.png')}}" /></td>
-    <td width="250"><strong><a href="{{=URL('topic','read',args=row.id)}}">{{=row.title}}</a></strong></td>
-    <td>{{=row.created_on}}</td>
-    <td><a href="{{=URL('user','profile',args=row.created_by)}}">{{=row.created_by.first_name}} {{=row.created_by.last_name}}</a></td>
-    <td width="100">{{=db(db.topic_reply.topic_title==row.id).count()}} reacties</td>
-    <td width="100">{{=row.views}}x bekeken</td>
-</tr>
+        <tr>
+            <th></th>
+            <th>{{=T('Topic title')}}</th>
+            <th>{{=T('Created on')}}</th>
+            <th>{{=T('Created by')}}</th>
+            <th>{{=T('Replys')}}</th>
+            <th>{{=T('Views')}}</th>
+        </tr>
+        {{if count>0:}}
+        {{for row in topic:}}
+    	<tr>
+            <td><img title="{{if row.slotje == 'Off':}}{{=T('Topic')}}{{else:}}{{=T('Closed topic')}}{{pass}}"
+                     src="{{if row.slotje == 'Off':}}{{=URL('static','icons',args='page.png')}}{{else:}}{{=URL('static','icons',args='page_key.png')}}{{pass}}" /></td>
+        	<td width="250"><strong><a href="{{=URL('topic','read',args=row.id)}}">{{=row.title}}</a></strong></td>
+            <td>{{=row.created_on}}</td>
+            <td><a href="{{=URL('user','profile',args=row.created_by)}}">{{=row.created_by.first_name}} {{=row.created_by.last_name}}</a></td>
+        	<td width="100">{{=db(db.topic_reply.topic_title==row.id).count()}} reacties</td>
+            <td width="100">{{=row.views}}{{=T('x viewed')}}</td>
+        </tr>
 {{pass}}
 {{else:}}
 <tr>
-    <td>Er zijn geen topic gevonden die van {{=user.first_name}} zijn.</td>
+    <td>{{=T('There are no topics yet found from')}} {{=user.first_name}}.</td>
 </tr>
 {{pass}}
 </table>

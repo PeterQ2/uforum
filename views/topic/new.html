@@ -1,7 +1,7 @@
 {{extend 'layout.html'}}
 
-<h3 class="forum" style="margin-bottom: 0;">Nieuw topic</h3>
-<a href="{{=URL('default','category',args=request.args(0))}}">Terug</a>
+<h3 class="forum" style="margin-bottom: 0;">{{=T('New topic')}}</h3>
+<a href="{{=URL('default','category',args=request.args(0))}}">{{=T('Back')}}</a>
 <br /><br />
 {{=error}}
 <br /><br />

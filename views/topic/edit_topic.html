@@ -1,15 +1,15 @@
 {{extend 'layout.html'}}
 
-<div class="breadcrumb"><a href="{{=URL('default','index')}}" class="bold">Index</a> &raquo; <a href="{{=URL('default','category',args=forum.id)}}" class="bold">{{=forum.name}}</a> &raquo; {{=topic.title}}
+<div class="breadcrumb"><a href="{{=URL('default','index')}}" class="bold">{{=T('Index')}}</a> &raquo; <a href="{{=URL('default','category',args=forum.id)}}" class="bold">{{=forum.name}}</a> &raquo; {{=topic.title}}
 {{if auth.has_membership('admin'):}}
     <div style="float: right">
         {{if topic.slotje == 'Off':}}
-        <a href="{{=URL('topic','close_topic',args=topic.id)}}">[Sluiten]</a>
+        <a href="{{=URL('topic','close_topic',args=topic.id)}}">{{=T('[Close]')}}</a>
         {{else:}}
-        <a href="{{=URL('topic','open_topic',args=topic.id)}}">[Openen]</a>
+        <a href="{{=URL('topic','open_topic',args=topic.id)}}">{{=T('[Open]')}}</a>
         {{pass}}
-        <a href="{{=URL('topic','edit_topic',args=topic.id)}}">[Wijzig]</a>
-        <a href="{{=URL('topic','remove_topic',args=topic.id)}}">[Verwijder]</a>
+        <a href="{{=URL('topic','edit_topic',args=topic.id)}}">{{=T('[Edit]')}}</a>
+        <a href="{{=URL('topic','remove_topic',args=topic.id)}}">{{=T('[Remove]')}}</a>
     </div>
 {{pass}}
 </div>

@@ -3,8 +3,8 @@
 <table width="100%" class="table-block">
 <tr>
     <th></th>
-    <th>Gebruiker</th>
-    <th>Aantal topics</th>
+    <th>{{=T('User')}}:</th>
+    <th>{{=T('Topics')}}:</th>
 </tr>
 {{if count > 0:}}
     {{for row in user:}}
@@ -16,7 +16,7 @@
 {{pass}}
 {{else:}}
 <tr>
-    <td colspan="3">Er zijn nog geen gebruikers aangemeld.</td>
+    <td colspan="3">{{=T('There are no users signed up yet!')}}</td>
 </tr>
 {{pass}}
 </table>

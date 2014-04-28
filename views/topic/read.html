@@ -1,29 +1,29 @@
 {{extend 'layout.html'}}
 
-<div class="breadcrumb"><a href="{{=URL('default','index')}}" class="bold">Index</a> &raquo; <a href="{{=URL('default','category',args=forum.id)}}" class="bold">{{=forum.name}}</a> &raquo; {{=topic.title}}
+<div class="breadcrumb"><a href="{{=URL('default','index')}}" class="bold">{{=T('Index')}}</a> &raquo; <a href="{{=URL('default','category',args=forum.id)}}" class="bold">{{=forum.name}}</a> &raquo; {{=topic.title}}
 {{if auth.has_membership('admin'):}}
     <div style="float: right">
         {{if topic.slotje == 'Off':}}
-        <a href="{{=URL('topic','close_topic',args=topic.id)}}">[Sluiten]</a>
+        <a href="{{=URL('topic','close_topic',args=topic.id)}}">{{=T('[Close]')}}</a>
         {{else:}}
-        <a href="{{=URL('topic','open_topic',args=topic.id)}}">[Openen]</a>
+        <a href="{{=URL('topic','open_topic',args=topic.id)}}">{{=T('[Open]')}}</a>
         {{pass}}
-        <a href="{{=URL('topic','edit_topic',args=topic.id)}}">[Wijzig]</a>
-        <a href="{{=URL('topic','remove_topic',args=topic.id)}}">[Verwijder]</a>
+        <a href="{{=URL('topic','edit_topic',args=topic.id)}}">{{=T('[Edit]')}}</a>
+        <a href="{{=URL('topic','remove_topic',args=topic.id)}}">{{=T('[Remove]')}}</a>
     </div>
 {{pass}}
 </div>
 <table width="100%">
 <tr>
     <td class="white" width="120"><a href="{{=URL('user','profile',args=topic.created_by)}}">{{=topic.created_by.first_name}} {{=topic.created_by.last_name}}</a></td>
-    <td class="white" width="590">Geplaatst op: {{=topic.created_on}}</td>
-    <td class="white">Aantal keer bekeken: {{=topic.views}}</td>
+    <td class="white" width="590">{{=T('Created on')}}: {{=topic.created_on}}</td>
+    <td class="white">{{=T('Amount viewed')}}: {{=topic.views}}</td>
 </tr>
 <tr>
     <td class="white" valign="top">
     <img src="{{=URL('default','download',args=user.avatar)}}" width="120" height="120" />
-    <strong>Forum posts:</strong> {{=user.forum_posts}}<br/>
-    <strong>Woonplaats:</strong> {{=user.city}}</td>
+    <strong>{{=T('Forum posts')}}:</strong> {{=user.forum_posts}}<br/>
+    <strong>{{=T('Residence')}}:</strong> {{=user.residence}}</td>
     <td class="white" valign="top" colspan="2">{{=XML(topic.topic_text, sanitize=True)}}</td>
 </tr>
 </table>
@@ -38,23 +38,23 @@
 <table width="100%">
 <tr>
     <td class="white" width="120"><a href="{{=URL('user','profile',args=reply.created_by)}}">{{=reply.created_by.first_name}} {{=reply.created_by.last_name}}</a></td>
-    <td class="white">Geplaatst op: {{=reply.created_on}}
+    <td class="white">{{=T('Created on')}}: {{=reply.created_on}}
     {{if auth.has_membership('admin'):}}
-        <div style="float: right"><a href="{{=URL('topic','remove_reply',args=reply.id)}}">[Verwijder]</a></div>
+        <div style="float: right"><a href="{{=URL('topic','remove_reply',args=reply.id)}}">{{=T('[Remove]')}}</a></div>
     {{pass}}
         </td>
 </tr>
 <tr>
     <td class="white" valign="top">
     <img src="{{=URL('default','download',args=user.avatar)}}" width="120" height="120" />
-    <strong>Forum posts:</strong> {{=user.forum_posts}}<br/>
-    <strong>Woonplaats:</strong> {{=user.city}}</td>
+    <strong>{{=T('Forum posts')}}:</strong> {{=user.forum_posts}}<br/>
+    <strong>{{=T('Residence')}}:</strong> {{=user.residence}}</td>
     <td class="white" valign="top">{{=XML(reply.reply_text, sanitize=True)}}</td>
 </tr>
 </table>
     {{pass}}
 {{else:}}
-Er zijn geen reacties op dit topic
+{{=T('There are no topic replys yet in this topic')}}
 {{pass}}
 {{if auth.is_logged_in():}}
 {{if topic.slotje == 'Off':}}
