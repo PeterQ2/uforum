@@ -4,7 +4,13 @@
 <div style="background: #ffffff; padding: 5px">
 <table>
     <tr>
-        <td><img src="{{=URL('default','download',args=user.avatar)}}" width="120" height="120" /></td>
+        <td>
+        {{if user.avatar_thumb:}}
+            {{=IMG(_src=URL('static','thumbnails',args=user.avatar_thumb))}}
+        {{else:}}
+            {{=IMG(_src=URL('default','download',args=user.avatar), _width='120')}}
+        {{pass}}
+        </td>
         <td>{{=T('E-mail address')}}: {{=user.email}}<br />{{=T('Forum posts')}}: {{=user.forum_posts}}<br/>{{=T('Residence')}}: {{=user.residence}}</td>
     </tr>
 </table>

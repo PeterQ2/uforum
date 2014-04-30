@@ -47,6 +47,7 @@ crud, service, plugins = Crud(db), Service(), PluginManager()
 ## create all tables needed by auth if not custom tables
 auth.settings.extra_fields['auth_user'] = [
     Field('avatar', 'upload'),
+    Field('avatar_thumb', 'upload', compute=lambda r: generate_thumbnail(r['avatar'], 120, 120, True)),
     Field('forum_posts','integer',default='0',writable=False,readable=False),
     Field('residence','string')
 ]

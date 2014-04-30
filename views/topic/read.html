@@ -21,7 +21,11 @@
 </tr>
 <tr>
     <td class="white" valign="top">
-    <img src="{{=URL('default','download',args=user.avatar)}}" width="120" height="120" />
+    {{if user.avatar_thumb:}}
+        {{=IMG(_src=URL('static','thumbnails',args=user.avatar_thumb))}}
+    {{else:}}
+        {{=IMG(_src=URL('default','download',args=user.avatar), _width='120')}}
+    {{pass}}
     <strong>{{=T('Forum posts')}}:</strong> {{=user.forum_posts}}<br/>
     <strong>{{=T('Residence')}}:</strong> {{=user.residence}}</td>
     <td class="white" valign="top" colspan="2">{{=XML(topic.topic_text, sanitize=True)}}</td>
@@ -46,7 +50,11 @@
 </tr>
 <tr>
     <td class="white" valign="top">
-    <img src="{{=URL('default','download',args=user.avatar)}}" width="120" height="120" />
+        {{if user.avatar_thumb:}}
+        {{=IMG(_src=URL('static','thumbnails',args=user.avatar_thumb))}}
+    {{else:}}
+        {{=IMG(_src=URL('default','download',args=user.avatar), _width='120')}}
+    {{pass}}
     <strong>{{=T('Forum posts')}}:</strong> {{=user.forum_posts}}<br/>
     <strong>{{=T('Residence')}}:</strong> {{=user.residence}}</td>
     <td class="white" valign="top">{{=XML(reply.reply_text, sanitize=True)}}</td>
